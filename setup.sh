@@ -17,34 +17,17 @@ sudo -u ubuntu git clone --depth 1 https://huggingface.co/stabilityai/stable-dif
 cd stable-diffusion-2-1-base/
 sudo -u ubuntu git lfs pull --include "v2-1_512-ema-pruned.ckpt"
 sudo -u ubuntu git lfs install --force
-
-#add new model
-sudo -u ubuntu git clone --depth 1 https://huggingface.co/runwayml/stable-diffusion-v1-5
-cd stable-diffusion-v1-5/
-sudo -u ubuntu git lfs pull --include "v1-5-pruned.ckpt"
-sudo -u ubuntu git lfs install --force
-
 cd ..
 sudo mv stable-diffusion-2-1-base/v2-1_512-ema-pruned.ckpt stable-diffusion-webui/models/Stable-diffusion/
 sudo rm -rf stable-diffusion-2-1-base/
-
-sudo mv stable-diffusion-v1-5/v1-5-pruned.ckpt stable-diffusion-webui/models/Stable-diffusion/
-sudo cp stable-diffusion-v1-5/v1-inference.yaml stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned.yaml
-sudo rm -rf stable-diffusion-v1-5/
 
 # download the corresponding config file and move it also to the model directory (make sure the name matches the model name)
 wget https://raw.githubusercontent.com/Stability-AI/stablediffusion/main/configs/stable-diffusion/v2-inference.yaml
 sudo cp v2-inference.yaml stable-diffusion-webui/models/Stable-diffusion/v2-1_512-ema-pruned.yaml
 
+#cd to extensions and run: git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser
 # change ownership of the web UI so that a regular user can start the server
 sudo chown -R ubuntu:ubuntu stable-diffusion-webui/
-cd stable-diffusion-webui/extensions
-sudo -u ubuntu git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser
-
-cd ../models
-wget https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0/resolve/main/dreamlike-photoreal-2.0.ckpt
-cd /~
-
 
 # start the server as user 'ubuntu'
 sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen > log.txt
