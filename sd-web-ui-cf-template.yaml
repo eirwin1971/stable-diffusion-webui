@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: A CloudFormation template to deploy the Stable Diffusion Web UI by Automatic1111
+Description: A CloudFormation template to deploy SD Eirwin
 
 Resources:
   SecurityGroup:
