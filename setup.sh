@@ -40,6 +40,9 @@ sudo cp v2-inference.yaml stable-diffusion-webui/models/Stable-diffusion/v2-1_51
 sudo chown -R ubuntu:ubuntu stable-diffusion-webui/
 cd stable-diffusion-webui/extensions
 sudo -u ubuntu git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser
+
+cd ../models
+wget https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0/resolve/main/dreamlike-photoreal-2.0.ckpt
 cd /~
 
 
