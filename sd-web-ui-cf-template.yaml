@@ -36,6 +36,7 @@ Resources:
             #!/bin/bash
             cd /home/ubuntu
             git clone --branch aws-modifications https://github.com/eirwin1971/stable-diffusion-webui.git
+            sudo sed -i 's/\r//g' stable-diffusion-webui/setup.sh
             bash stable-diffusion-webui/setup.sh -y
   MyEIP:
     Type: AWS::EC2::EIP
